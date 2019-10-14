@@ -11,12 +11,12 @@ const foldersRouter = require('./folders/folders-router')
 const app = express()
 
 var corsOptions = {
-	origin: 'http://localhost:3000',
+	origin: '*',
 	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common'))
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(helmet())
 
 app.use('/api/notes', notesRouter)
