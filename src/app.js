@@ -17,6 +17,7 @@ var corsOptions = {
 
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common'))
 app.use(cors())
+app.options('*', cors());
 app.use(helmet())
 
 app.use('/api/notes', notesRouter)
