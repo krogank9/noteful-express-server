@@ -17,11 +17,12 @@ var corsOptions = {
 
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common'))
 //app.use(cors())
-app.all('/*', function (req, res, next) {
-	res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
-	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,HEAD,DELETE,OPTIONS');
-	res.header('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
-	next();
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
 });
 app.use(helmet())
 
