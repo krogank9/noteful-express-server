@@ -10,20 +10,9 @@ const foldersRouter = require('./folders/folders-router')
 
 const app = express()
 
-var corsOptions = {
-	origin: '*',
-	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common'))
-//app.use(cors())
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', '*');
-    res.header("Access-Control-Allow-Headers", '*');
-    next();
-});
+app.use(cors())
+app.options('/*', cors())
 app.use(helmet())
 
 app.use('/api/notes', notesRouter)
